@@ -1,0 +1,215 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0l4bi1efc8mo"]
+
+[ext_resource type="Texture2D" uid="uid://bfun4qkl3kx6t" path="res://assets/NewAssets/IMG_20241009_152949.jpg" id="1_22cc3"]
+[ext_resource type="PackedScene" uid="uid://dfyke7ogkd0b2" path="res://Ressources/mur.tscn" id="3_02bbp"]
+[ext_resource type="Texture2D" uid="uid://cfv5jksjvbv64" path="res://assets/NewAssets/tree.png" id="4_52iue"]
+[ext_resource type="PackedScene" uid="uid://dwfhjmyj5yip8" path="res://Ressources/objet.tscn" id="4_qiicj"]
+[ext_resource type="PackedScene" uid="uid://bj4j26dsbef4q" path="res://Ressources/perso.tscn" id="5_hh7m6"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="6_5ovgk"]
+[ext_resource type="Texture2D" uid="uid://cf001ejpoyt5t" path="res://assets/NewAssets/Capture d'écran 2024-10-23 144943.png" id="6_bskpc"]
+[ext_resource type="Texture2D" uid="uid://osqy4dok1avw" path="res://assets/NewAssets/Capture d'écran 2024-10-23 143738.png" id="7_vgpxx"]
+[ext_resource type="PackedScene" uid="uid://dplwb4ewhnu20" path="res://Ressources/Deco.tscn" id="9_nxa87"]
+[ext_resource type="Texture2D" uid="uid://d2sl086iukstx" path="res://assets/NewAssets/house1.png" id="10_o4qx6"]
+[ext_resource type="Texture2D" uid="uid://d0e7t4j8f74h4" path="res://assets/NewAssets/house2.png" id="11_5wber"]
+[ext_resource type="Texture2D" uid="uid://b23ycbs4waceo" path="res://assets/NewAssets/house3.png" id="12_14vev"]
+[ext_resource type="Texture2D" uid="uid://dmymkuu8xyfr7" path="res://assets/NewAssets/house5.png" id="13_sidqt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xwg3e"]
+radius = 140.0
+height = 428.0
+
+[node name="MyNewScene" type="Node2D"]
+
+[node name="Img20241009152949" type="Sprite2D" parent="."]
+position = Vector2(1948, 385)
+rotation = 1.5708
+texture = ExtResource("1_22cc3")
+
+[node name="Mur" parent="." instance=ExtResource("3_02bbp")]
+position = Vector2(852, 1466)
+scale = Vector2(14.565, 1)
+
+[node name="Mur4" parent="." instance=ExtResource("3_02bbp")]
+position = Vector2(1027, -72)
+scale = Vector2(18.345, 1)
+
+[node name="Mur2" parent="." instance=ExtResource("3_02bbp")]
+position = Vector2(1803, 663)
+rotation = 1.5708
+scale = Vector2(13.505, 1)
+
+[node name="Mur3" parent="." instance=ExtResource("3_02bbp")]
+position = Vector2(-45, 642)
+rotation = 1.5708
+scale = Vector2(12.985, 1)
+
+[node name="Objet" parent="." instance=ExtResource("4_qiicj")]
+position = Vector2(1323, 927)
+image = ExtResource("4_52iue")
+
+[node name="Perso" parent="." node_paths=PackedStringArray("objet", "objetDesactiver") instance=ExtResource("5_hh7m6")]
+position = Vector2(858, 523)
+image = ExtResource("6_bskpc")
+objet = NodePath("../Objet")
+isSupprimable = true
+objetDesactiver = NodePath("../Mur2")
+texte = "Grrrr"
+joueurTexte = "Toi tu veux manger un arbre."
+texteResolution = "Miam un arbre"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(216, 1000)
+scale = Vector2(0.564538, 0.533105)
+collision_layer = 7
+motion_mode = 1
+script = ExtResource("6_5ovgk")
+SPEED = 400.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("7_vgpxx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_xwg3e")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(0.6, 0.6)
+
+[node name="Label" type="Label" parent="CharacterBody2D"]
+visible = false
+offset_left = 112.0
+offset_top = -239.0
+offset_right = 231.0
+offset_bottom = -189.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 36
+text = "Ouais !"
+metadata/_edit_use_anchors_ = true
+
+[node name="Deco" parent="CharacterBody2D" instance=ExtResource("9_nxa87")]
+position = Vector2(-457.011, 536.479)
+
+[node name="House1" type="Sprite2D" parent="."]
+position = Vector2(-55, 1351)
+scale = Vector2(1.97394, 2.07564)
+texture = ExtResource("10_o4qx6")
+
+[node name="House13" type="Sprite2D" parent="."]
+position = Vector2(-21, 318)
+scale = Vector2(1.97394, 2.07564)
+texture = ExtResource("10_o4qx6")
+
+[node name="House14" type="Sprite2D" parent="."]
+position = Vector2(800, 1441)
+scale = Vector2(1.97394, 2.07564)
+texture = ExtResource("10_o4qx6")
+
+[node name="House15" type="Sprite2D" parent="."]
+position = Vector2(877, -66)
+scale = Vector2(1.97394, 2.07564)
+texture = ExtResource("10_o4qx6")
+
+[node name="House16" type="Sprite2D" parent="."]
+position = Vector2(-4.00009, -83)
+scale = Vector2(1.97394, 2.07564)
+texture = ExtResource("10_o4qx6")
+
+[node name="House2" type="Sprite2D" parent="."]
+position = Vector2(77, 1470)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House7" type="Sprite2D" parent="."]
+position = Vector2(-61, 1012)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House8" type="Sprite2D" parent="."]
+position = Vector2(-44, 477)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House9" type="Sprite2D" parent="."]
+position = Vector2(909, 1470)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House10" type="Sprite2D" parent="."]
+position = Vector2(1676, 1460)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House11" type="Sprite2D" parent="."]
+position = Vector2(1232, -63.9999)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House12" type="Sprite2D" parent="."]
+position = Vector2(717, -70.0002)
+scale = Vector2(1.97394, 2.00292)
+texture = ExtResource("11_5wber")
+
+[node name="House3" type="Sprite2D" parent="."]
+position = Vector2(289, 1431)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House17" type="Sprite2D" parent="."]
+position = Vector2(-78, 1152)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House18" type="Sprite2D" parent="."]
+position = Vector2(504, -89)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House19" type="Sprite2D" parent="."]
+position = Vector2(-54, 627)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House20" type="Sprite2D" parent="."]
+position = Vector2(1665, -95.9999)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House25" type="Sprite2D" parent="."]
+position = Vector2(1430, -92.9998)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House21" type="Sprite2D" parent="."]
+position = Vector2(1033, -89)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House4" type="Sprite2D" parent="."]
+position = Vector2(1124, 1427)
+scale = Vector2(2.70727, 2.43019)
+texture = ExtResource("12_14vev")
+
+[node name="House5" type="Sprite2D" parent="."]
+position = Vector2(605, 1455)
+scale = Vector2(2.61977, 2.33928)
+texture = ExtResource("13_sidqt")
+
+[node name="House22" type="Sprite2D" parent="."]
+position = Vector2(-6.99991, 813)
+scale = Vector2(2.61977, 2.33928)
+texture = ExtResource("13_sidqt")
+
+[node name="House23" type="Sprite2D" parent="."]
+position = Vector2(33, 113)
+scale = Vector2(2.61977, 2.33928)
+texture = ExtResource("13_sidqt")
+
+[node name="House24" type="Sprite2D" parent="."]
+position = Vector2(292, -69.0001)
+scale = Vector2(2.61977, 2.33928)
+texture = ExtResource("13_sidqt")
+
+[node name="House6" type="Sprite2D" parent="."]
+position = Vector2(1453, 1467)
+scale = Vector2(2.61977, 2.33928)
+texture = ExtResource("13_sidqt")
